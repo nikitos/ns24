@@ -99,7 +99,7 @@
 					$resp->appendChild($el);
 
 					$el = $doc->createElement('status_code');
-					$el->appendChild($doc->createTextNode($code));
+					$el->appendChild($doc->createTextNode('22'));
 					$resp->appendChild($el);
 
 					$el = $doc->createElement('description');
@@ -297,7 +297,7 @@
 			switch($code)
 			{
 				case self::STATE_OK:
-					die();
+					return;
 					break;
 				case self::STATE_ERR_UNAUTH:
 					$rcode = -101;
