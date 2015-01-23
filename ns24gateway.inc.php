@@ -262,6 +262,8 @@
 							throw new NPExternalOperationException(self::STATE_ERR_NO_STASH, 'Unable to determine recipient\'s balance', $xop);
 						$xop->setStash($obj);
 						unset($obj);
+						$xop->setState('CNF');
+						$xop->commit();
 						$xop->setState('CLR');
 						$xop->commit();
 						return $this->sendResponseXML($xop, 4, 'pay');
