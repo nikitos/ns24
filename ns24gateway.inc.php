@@ -69,7 +69,7 @@
 					$resp->appendChild($el);
 
 					$el = $doc->createElement('abonplata');
-					$el->appendChild($doc->createTextNode('500'));
+					$el->appendChild($doc->createTextNode($xop->getEntity()->getRate()->getQuotaSumRounded(2)));
 					$resp->appendChild($el);
 
 					$el = $doc->createElement('min_amount');
