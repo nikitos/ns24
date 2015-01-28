@@ -187,11 +187,13 @@
 			$W3BOX->http->filtervar('PAY_AMOUNT', W3BOX_RM_REQUEST, W3BOX_RV_STRING);
 			$W3BOX->http->filtervar('PAY_ACCOUNT', W3BOX_RM_REQUEST, W3BOX_RV_STRING);
 			$W3BOX->http->filtervar('PAY_ID', W3BOX_RM_REQUEST, W3BOX_RV_STRING);
+			$W3BOX->http->filtervar('TRADE_POINT', W3BOX_RM_REQUEST, W3BOX_RV_STRING);
 
 			$act = $W3BOX->http->getvar('ACT');
 			$amount = $W3BOX->http->getplain('PAY_AMOUNT');
 			$account = $W3BOX->http->getplain('PAY_ACCOUNT');
 			$pid = $W3BOX->http->getplain('PAY_ID');
+			$tp = $W3BOX->http->getplain('TRADE_POINT');
 
 			if(!$act)
 				throw new NPExternalOperationException(self::STATE_ERR_NODATA, 'Unable to read command');
@@ -224,7 +226,7 @@
 						$xop->setProvider($p);
 						if(!$account)
 							throw new NPExternalOperationException(self::STATE_ERR_WRONG_USER, 'Unable to read transaction recipient', $xop);
-						$xop->setExternalAccount($account);
+						$xop->setExternalAccount($account . ', ' . $tp);
 						$obj = $this->findAccessEntity($account);
 						if(!$obj)
 							throw new NPExternalOperationException(self::STATE_ERR_NO_USER, 'Unable to find transaction recipient', $xop);
