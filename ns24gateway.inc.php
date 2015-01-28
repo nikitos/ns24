@@ -254,7 +254,7 @@
 						$xop->setDifference($sum);
 						if(!$account)
 							throw new NPExternalOperationException(self::STATE_ERR_WRONG_USER, 'Unable to read transaction recipient', $xop);
-						$xop->setExternalAccount($account);
+						$xop->setExternalAccount($account . ', ' . $tp);
 						$obj = $this->findAccessEntity($account);
 						if(!$obj)
 							throw new NPExternalOperationException(self::STATE_ERR_NO_USER, 'Unable to find transaction recipient', $xop);
